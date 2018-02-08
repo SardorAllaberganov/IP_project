@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Info</title>
+  <meta charset="utf-8">
+	<!-- links -->
+  <link rel="shortcut icon" href="data/img/st_info.png">
+  <link rel="stylesheet" type="text/css" href="data/css/bootstrap.min.css">
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="data/css/stylesheet.css">
+  <!-- scripts -->
+  <script type="text/javascript" src="data/js/jquery.min.js"></script>
+  <script type="text/javascript" src="data/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+</head>
+<body>
+  <div ng-app="studentInfo" class="container-fluid">
+  	<div class="main-block">
+  	  <div class="left-aside-bar">
+  	    <div class="st-navbar">
+ 	  	  <nav class="navbar">
+		    <div class="container-fluid">
+		      <div class="navbar-header">
+		        <a class="navbar-brand imgLogo" href="#"></a>
+		      </div>
+		    </div>
+		  </nav>
+ 	    </div>
+ 	  	<div class="row">
+ 	  	  <div class="user-info">
+	 	  	<ul class="nav navbar-nav">
+	 	  	  <img src="data/img/user.png" class="user-img-aside">
+		      <li class="dropdown">
+		      	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+		      	  <i class="fas fa-user"></i>Firstname Surname Middlename <i class="fas fa-caret-down"></i>
+		      	</a>
+		      <ul class="dropdown-menu">
+		        <li><a href="#">Update Profile</a></li>
+		        <li><a href="#">Logout</a></li>
+		      </ul>
+		      </li>
+		    </ul>
+	 	  </div>
+	 	</div>
+ 	  	<div id="mySidenav" class="sidenav">
+		  <a href="#" class="active"><i class="fas fa-home"></i> Home</a>
+		  <a href="#"><i class="fas fa-sort-amount-up"></i> Students rank</a>
+		  <a href="#"><i class="fas fa-chart-bar"></i> Students statistics</a>
+		  <a href="#"><i class="far fa-bookmark"></i> About</a>
+		  <a href="#"><i class="far fa-address-book"></i> Contact</a>
+		</div>
+      </div>
+      <div class="center-main-block">
+      	<!-- ===== table part ===== -->
+  	    <div ng-controller="stInfoController">
+  	      <div class="info-block">
+		    <div class="col-md-8 col-sm-8">
+		      <div class="info-block-table">
+		      	<table class="info-table">
+		      	  <tr class="">
+		       	  	<th></th>
+		       	  	<th></th>
+		      	  </tr>
+		      	</table>
+		      </div>
+		    </div>
+		    <div class="col-md-4 col-sm-4">
+		      <div class="info-block-table">
+		      	<img src="data/img/user.png">
+		      </div>
+		    </div>
+  	      </div>
+  	      <div class="container-fluid">
+  	        <div class="row">
+  	          <div class="col-md-4 col-sm-4">
+				<input class="search-input form-control" placeholder="search" type="text" ng-model="search">
+			  </div>
+			  <div class="col-md-3 col-sm-3">
+			    <select class="form-control">
+			      <option selected disabled hidden>Level</option>
+				  <option>Freshman</option>
+				  <option>Sophomore</option>
+				  <option>Junior</option>
+				  <option>Senior</option>
+				</select>
+			  </div>
+			  <div class="col-md-3 col-sm-3">
+			    <select class="form-control">
+			      <option selected disabled hidden>Course</option>
+				  <option>Database</option>
+				  <option>System programming</option>
+				  <option>Unix programming</option>
+				</select>
+			  </div>
+			  <div class="col-md-2 col-sm-2">
+			  	<select class="form-control">
+			  	  <option selected disabled hidden>Group</option>
+			  	  <option>16-4</option>
+			  	  <option>16-5</option>
+			  	  <option>16-9</option>
+			  	  <option>16-16</option>
+			  	</select>
+			  </div>
+			</div>
+		  </div>
+		  <div class="row">
+	  	  	<table class="studentInfo">
+	  	  	  <tr class="header-row">
+	  	  	  	<th style="border-radius: 5px 0 0 0;" class="numberColumn"> № </th>
+	  	  	    <th ng-click="orderByMe('id')">Student ID</th>
+	  	  	    <th ng-click="orderByMe('name')">Name</th>
+	      		<th>Email</th>
+	      		<th ng-click="orderByMe('gpa')"> GPA </th>
+	      		<th class="edit-button-column">
+	      		  <i class="fas fa-edit"></i>
+	      		</th>
+	      		<th style="border-radius: 0 5px 0 0;" class="delete-button-column">
+	      		  <i class="fas fa-trash-alt"></i>
+	      		</th>
+	  	  	  </tr>
+	  	  	  <tr id="table" ng-repeat="students in list | filter : search | orderBy:myOrderBy ">
+	  	  	  	<td> {{ $index + 1 }} </td>
+	  	  	  	<td>{{ 'U' + students.id }}</td>
+	            <td>{{ students.firstname +" "+students.surname }}</td>
+	            <td> {{ students.email }} </td>
+	            <td> {{ students.gpa}} </td>
+	            <td class="delete-button-column"><button><i class="far fa-edit"></i> Edit</button></td>
+	            <td class="delete-button-column"> 
+	              <button ng-click="list.splice($index,1)"><i id="trash" class="far fa-trash-o" aria-hidden="true"></i> Remove</button>
+	            </td>
+	          </tr>
+	  	  	</table>
+	  	  </div>
+	      <div class="st-add-part">
+	        <input type="text" class="form-control" ng-model="id" placeholder="Enter the student ID" />
+            <input type="text" class="form-control" ng-model="firstname" placeholder="Enter the firstname" />
+	        <input type="text" class="form-control" ng-model="surname" placeholder="Enter the surname" />
+	        <input type="email" class="form-control" ng-model="email" placeholder="Enter a email" required />
+	        <p><button ng-click="add()" type="submit">Add the student</button></p>
+          </div>
+  	  	</div>
+      </div>
+ 	</div>
+  </div>
+  <script type="text/javascript" src="data/js/index.js"></script>
+</body>
+</html>
+
