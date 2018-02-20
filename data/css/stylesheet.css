@@ -30,8 +30,8 @@ html,body{padding: 0; margin: 0;width: 100%;height: 100%;overflow-x: hidden;font
 .studentInfo{width: 95%;border-radius: 5px!important;border-collapse: collapse;text-align: center;position: relative;left: 50%;transform: translateX(-50%);}
 .studentInfo th{padding-top: 12px;padding-bottom: 12px;text-align: center;background: #224687;color: white;font-size: 15pt;}
 .header-row{border-radius: 10px;}
-#table:nth-child(even){background-color: #f2f2f2;}
-#table:nth-child(odd){background-color: #C8E6C9;}
+#table:nth-child(even){background-color: #90CAF9;}
+#table:nth-child(odd){background-color: #64B5F6;}
 #table td{height: 45px;}
 .studentInfo th:hover{background: #2ABED3;cursor: default;}
 /*.studentInfo td,.studentInfo th{width: 200px;}*/
@@ -41,3 +41,47 @@ html,body{padding: 0; margin: 0;width: 100%;height: 100%;overflow-x: hidden;font
 .numberColumn{width: 40px!important;}
 /* ===== end table part styles ===== */
 .st-add-part{width: 95%;position: relative;margin: 10px;}
+.st-add-part input{width: 20%;display: inline-block;}
+
+
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter,
+.animate-repeat.ng-leave {
+  transition:all linear 0.3s;
+}
+
+.animate-repeat.ng-leave.ng-leave-active,
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter {
+  opacity:0;
+}
+
+.animate-repeat.ng-leave,
+.animate-repeat.ng-move.ng-move-active,
+.animate-repeat.ng-enter.ng-enter-active {
+  opacity:1;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+/* ============ login page styles ============= */
+.login-back{background: radial-gradient(rgba(34,70,135,0.1),rgba(34,70,135,1));width: 100%;height: 100%;}
+.login-main-block{
+	position: relative;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 70%;
+	height: 80%;
+	background: #fff;
+	box-shadow: 2px 2px 10px #424242;
+	display: flex;
+	border-radius: 5px;
+}
+.login-img{width: 40%;border:none;border-radius: 5px 0 0 5px; float: left;background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(../img/login-back.jpg);background-repeat: no-repeat;background-size: 100% 100%;background-position: right;/*   -webkit-filter: blur(2px);-moz-filter: blur(2px);-o-filter: blur(2px);-ms-filter: blur(2px);filter: blur(2px); */}.login-img img{width: 70%;position: relative;top: 45%;left: 50%;transform: translate(-50%,-50%);}
+.login{width: 60%; border: none;float: right;}.login form{position: relative;top: 50%;left: 50%;text-align: center; transform: translate(-50%, -50%);}.login label{width:30%;margin: 10px;display: block; text-align: left;position: relative;left: 50%;transform: translateX(-50%);font-size: 13pt;}.login input{width: 100%;padding: 5px;border-radius: 5px;border:none;border-bottom: 2px  solid #424242;margin: 5px 0 5px 0;font-size: 12pt;}.login input:focus{outline:none;border-bottom: 2px solid #00BCD4;background: none; padding: 5px;border-radius: 5px;transition: all 0.4s;color: #00BCD4}.login input:focus::-webkit-input-placeholder{color: #00BCD4;}

@@ -13,6 +13,7 @@
   <script type="text/javascript" src="data/js/jquery.min.js"></script>
   <script type="text/javascript" src="data/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.js"></script>
 </head>
 <body>
   <div ng-app="studentInfo" class="container-fluid">
@@ -119,10 +120,10 @@
 	      		  <i class="fas fa-trash-alt"></i>
 	      		</th>
 	  	  	  </tr>
-	  	  	  <tr id="table" ng-repeat="students in list | filter : search | orderBy:myOrderBy ">
+	  	  	  <tr class="animate-repeat" id="table" ng-repeat="students in list | filter : search | orderBy:myOrderBy ">
 	  	  	  	<td> {{ $index + 1 }} </td>
 	  	  	  	<td>{{ 'U' + students.id }}</td>
-	            <td>{{ students.firstname +" "+students.surname }}</td>
+	            <td>{{ students.name | myFormat}}</td>
 	            <td> {{ students.email }} </td>
 	            <td> {{ students.gpa}} </td>
 	            <td class="delete-button-column"><button><i class="far fa-edit"></i> Edit</button></td>
@@ -133,11 +134,13 @@
 	  	  	</table>
 	  	  </div>
 	      <div class="st-add-part">
-	        <input type="text" class="form-control" ng-model="id" placeholder="Enter the student ID" />
-            <input type="text" class="form-control" ng-model="firstname" placeholder="Enter the firstname" />
-	        <input type="text" class="form-control" ng-model="surname" placeholder="Enter the surname" />
-	        <input type="email" class="form-control" ng-model="email" placeholder="Enter a email" required />
-	        <p><button ng-click="add()" type="submit">Add the student</button></p>
+	      	<form action="">
+		        <input type="text" minlength="7" maxlength="7" class="form-control" value='id' ng-model="id" placeholder="Enter the student ID" />
+	            <input type="text" class="form-control" ng-model="firstname" placeholder="Enter the firstname" />
+		        <input type="text" class="form-control" ng-model="surname" placeholder="Enter the surname" />
+		        <input type="email" class="form-control" ng-model="email" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,8})$/" placeholder="Enter a email" required />
+		        <button ng-click="add()" type="submit">Add the student</button>
+		    </form>
           </div>
   	  	</div>
       </div>

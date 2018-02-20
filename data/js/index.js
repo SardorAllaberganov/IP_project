@@ -1,22 +1,52 @@
-var myApp = angular.module('studentInfo', []);
+var myApp = angular.module('studentInfo', ['ngAnimate']);
   myApp.controller('stInfoController', ['$scope', function ($scope) {
 
    	$scope.list = [     
-   		{id: "1610202", firstname:'sardor', surname: 'allabergenov', email:'hello@mail.com', gpa:'2.96'},
-      {id: "1610231", firstname:'Shohsanam',surname: 'Shirinkulova', email:'hello@mail.com', gpa:'4.28'},
-      {id: "1610183", firstname:'Rahmatjon',surname: 'Khasanov', email:'hello@mail.com', gpa:'4.31'},
-      {id: "1610127", firstname:'Madina', surname: 'Kurbanov', email:'hello@mail.com', gpa:'3.68'},
-      {id: "1610203", firstname:'Sardor', surname: 'Doniyorov', email:'hello@mail.com', gpa:'4.01'},];
+   		{id: "1610202", name:'sardor allabergenov', email:'hello@mail.com', gpa:'2.96'},
+      {id: "1610231", name:'shohsanam shirinkulova', email:'hello@mail.com', gpa:'4.28'},
+      {id: "1610183", name:'rahmatjon khasanov', email:'hello@mail.com', gpa:'4.31'},
+      {id: "1610127", name:'madina kurbanov', email:'hello@mail.com', gpa:'3.68'},
+      {id: "1610203", name:'sardor doniyorov', email:'hello@mail.com', gpa:'4.01'},];
 
+    $scope.add = function (){
+
+      angular.forEach($scope.list, function(attr){
+        if($scope.id !== attr.id){
+          if(angular.isDefined($scope.firstname) && $scope.id != '' && $scope.firstname != '' && $scope.surname != '' ){
+            $scope.list.push({ id: $scope.id, name: $scope.firstname +' '+ $scope.surname, email: $scope.email});
+            $scope.id = '';
+            $scope.firstname = '';
+            $scope.surname = '';
+            $scope.email = '';
+          } 
+        }
+        else{
+          alert("exists"); 
+          $scope.id = '';
+          $scope.firstname = '';
+          $scope.surname = '';
+          $scope.email = '';
+        }
+      });
+      
+	};
+	$scope.orderByMe = function(students) {
+        $scope.myOrderBy = students;
+  }
+  $scope.remove = function (index) {
+    $scope.list.splice(index, 1);
+  }
+  }]
+);
   myApp.filter('myFormat', function() {
-    return function(students) {
+    return function(x) {
       var i, c, txt = " ";
-      for (i = 0; i < students.length; i++) {
-          c = students[i];
+      for (i = 0; i < x.length; i++) {
+          c = x[i];
           if (i == 0) {
               c = c.toUpperCase();
           }
-          if(students[i-1] == ' '){
+          if(x[i-1] == ' '){
             c = c.toUpperCase();
           }
           txt += c;
@@ -24,25 +54,6 @@ var myApp = angular.module('studentInfo', []);
         return txt;
       };
     });
-    $scope.add = function (){
-      if (angular.isDefined($scope.firstname) && $scope.id != '' && $scope.firstname != '' && $scope.surname != ''  && $scope.email != '' && $scope.gpa != ''){
-        $scope.list.push({ id: $scope.id, firstname: $scope.firstname, surname: $scope.surname, email: $scope.email, gpa: $scope.gpa});
-  	    $scome.id = '';
-        $scope.firstname = '';
-        $scope.surname = '';
-        $scope.email = '';
-        $scope.gpa = '';
-	  }
-	};
-	$scope.orderByMe = function(students) {
-        $scope.myOrderBy = students;
-  }
-
-  $scope.remove = function (index) {
-    $scope.list.splice(index, 1);
-  }
-  }]
-);
 
 $(document).ready(function(){
     $("#datepicker").focus(function(){
@@ -68,8 +79,6 @@ $('ul li.dropdown').hover(function() {
 /* ======= end dropdown menu script ======= */
 
 /* ======= active menu script ======= */
-
-/* ======= end active menu script ======= */
 $(document).ready(function() { 
     $(".sidenav a").click(function ( e ) {
         e.preventDefault();
@@ -78,3 +87,4 @@ $(document).ready(function() {
         $(activeTab).show(); //Fade in the active content  
     });
 });
+/* ======= end active menu script ======= */
