@@ -2,6 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Login</title>
   <link rel="shortcut icon" href="data/img/st_info.png">
   <link rel="stylesheet" type="text/css" href="data/css/bootstrap.min.css">
@@ -11,8 +12,6 @@
 
   <script type="text/javascript" src="data/js/jquery.min.js"></script>
   <script type="text/javascript" src="data/js/bootstrap.min.js"></script>
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.js"></script> -->
 </head>
 <body>
   <div class="login-back">
@@ -22,20 +21,18 @@
   	  </div>
   	  <div class="login">
   	  	<form action="">
-  	  	  <label>User name: <br>
-  	  	  	<input type="text" name="id" id="ID" maxlength="8" class="login-form" placeholder="ID" />
+  	  	  <label><i class="fas fa-user"></i> User name: <br>
+  	  	  	</i><input type="text" name="id" id="ID" maxlength="8" class="login-form" placeholder="ID" />
   	  	  </label>
-  	  	  <label>Password: <br>
+  	  	  <label><i class="fas fa-key"></i> Password: <br>
 	  	  	<input type="password" name="password" id="password" class="login-form" placeholder="Password" />
   	  	  </label>
-  	  	  <button type="button" onclick="checkID()">Sign in</button>
+  	  	  <button type="button" onclick="checkID()"><i class="fas fa-sign-out-alt"></i> Sign in</button>
   	  	  <p id="demo"></p>
   	  	</form>
   	  </div>
     </div>
   </div>
-   <!-- pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" -->
-
   <script>
   	var isValidID = true;
   	var isValidPass = true;
@@ -43,14 +40,14 @@
 	function checkID() {
 	  var x;
 	    x = document.getElementById("ID").value;
-	    if(x[0] === 'u' || x[0] === 'U'){	
+	    if(x[0] === 'u' || x[0] === 'U'){
 		   	for(var i = 1; i < x.length; i++){
 		   		if(x[i] < '0' || x[i] > '9')
 		   			isValidID = false;
 		   	}
 		   	pass = document.getElementById("password").value;
 			for (var i = 0; i < pass.length; i++) {
-			  if (pass.length < 8 || pass.length > 21){
+			  if (pass.length < 8 || pass.length > 21 && pass.length === ''){
 			    isValidPass = false;
 			  }
 			}	
@@ -58,7 +55,7 @@
 		else {
 		    isValid = false;
 		  }
-  		if (isValidID && isValidPass) {
+  		if (isValidID && isValidPass && document.getElementById('ID').value !== "" && document.getElementById('password').value !== "") {
 			text = "ok";
 		}
 		else{ 
