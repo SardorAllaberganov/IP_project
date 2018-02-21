@@ -62,7 +62,11 @@
 			text = "invalid";
 		}
   		isValidID = true;isValidPass = true;
-		document.getElementById("demo").innerHTML = text;
+  		document.getElementById("demo").innerHTML = text;
+  		setTimeout(function(){ 
+  			document.getElementById("demo").innerHTML = "";
+  		}, 2500);
+		
 	 }
   </script>
 </body>
