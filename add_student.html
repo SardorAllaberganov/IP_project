@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Student Info</title>
+  <title>Adding Student</title>
   <meta charset="utf-8">
 	<!-- links -->
   <link rel="shortcut icon" href="data/img/st_info.png">
@@ -14,6 +14,37 @@
   <script type="text/javascript" src="data/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.js"></script>
+
+  <style type="text/css">
+  	.rotate{
+  		-webkit-transform: rotate(90deg);
+  		transform: rotate(90deg);
+  		transition: all 0.3s;
+  	}
+  	#student_href i.fa-chevron-right{
+  		transition: 0.3s;
+	    -webkit-transition: 0.3s;
+	    -moz-transition: 0.3s;
+	    -ms-transition: 0.3s;
+	    -o-transition: 0.3s;
+		float: right;
+		vertical-align: middle;
+		position: relative;
+		right: 10px;
+		margin: 2px;
+  	}
+  	.navValue{
+  		padding: 2px;
+  		border: none;
+  		background: none;
+  		margin: 10px 30px;
+  	}
+  	.student_nav #student a{
+  		position: relative;
+  		font-size: 11pt;
+  		padding-left: 50px;
+  	}
+  </style>
 </head>
 <body>
   <div ng-app="studentInfo" class="container-fluid">
@@ -28,27 +59,35 @@
 		    </div>
 		  </nav>
  	    </div>
- 	  	<div id="mySidenav" class="sidenav">
-		  <a href="#" class="active"><i class="fas fa-home"></i> Home</a>
-		  <a href="#"><i class="fas fa-sort-amount-up"></i> Students rank</a>
-		  <a href="#"><i class="fas fa-chart-bar"></i> Students statistics</a>
-		  <a href="#"><i class="far fa-bookmark"></i> About</a>
-		  <a href="#"><i class="far fa-address-book"></i> Contact</a>
-		</div>
+ 	  	<div id="mySidenav" class="sidenav" id="accordion">
+ 	      <a href="#" class="active"><i class="fas fa-home"></i> Home</a>
+	 	  <div class="student_nav">
+		    <a data-toggle="collapse" data-parent="#accordion" href="#student" id="student_href"><i class="fas fa-sort-amount-up"></i> Students <i class="fas fa-chevron-right dropdown-fa"></i></a>
+		 	<div id="student" class="panel-collapse collapse">
+			   <a href="All_students" class="inner_link"><i class="fas fa-chevron-right"></i> All Students</a> 
+			   <a href="All_students" class="inner_link"><i class="fas fa-chevron-right"></i> Student Details</a> 
+			   <a href="All_students" class="inner_link"><i class="fas fa-chevron-right"></i> Adding Student</a>   
+			</div>
+ 	      </div>
+	 	  <a href="#"><i class="fas fa-chart-bar"></i> Students statistics</a>
+	 	  <a href="#"><i class="far fa-bookmark"></i> About</a>
+	 	  <a href="#"><i class="far fa-address-book"></i> Contact</a>
+ 	  	</div>
+
       </div>
       <div class="center_main_block">
       	<!-- ===== table part ===== -->
-  	    <div ng-controller="teacherController">
+  	    <div ng-controller="adminController">
   	      <div class="main-nav">
-  	      	<div class="col-md-8 col-sm-8"><h3>Welcome to Student Management System</h3></div>
-  	      	<div class="col-md-4 col-sm-4">
+  	      	<div class="col-md-8 col-sm-8 col-xs-8"><h3>Welcome to Student Management System</h3></div>
+  	      	<div class="col-md-4 col-sm-4 col-xs-4">
   	      	  <div class="user-info">
   	      	    <img src="data/img/user.png" class="user_img_aside">
 		 	    <ul class="nav navbar-nav">
-			      <li class="dropdown" ng-repeat="teacher in teacher_list">
+			      <li class="dropdown" ng-repeat="admin in admin_list">
 			   	    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-			          {{ teacher.name | upperCase_name}} <i class="fas fa-caret-down"></i>
-			          <p>Teacher</p>
+			          {{ admin.name | upperCase_name}} <i class="fas fa-caret-down"></i>
+			          <p>Admin</p>
 			        </a>
 			        <ul class="dropdown-menu">
 			          <li><a href="#">See Profile</a></li>
@@ -61,20 +100,23 @@
 		 	</div>
   	      </div>
   	  	</div>
+  	    
+  	    <input type="text" class="navValue" value="Home" disabled="">
+
   	      <div class="main_block_content" ng-controller="stInfoController">
 	  	    <div class="container-fluid">
 			  <div class="row">
 			    <table class="studentInfo">
 			      <tr class="top_row">
-			      	<div class="col-md-4 col-sm-4">
+			      	<div class="col-md-4 col-sm-4 col-xs-4">
 			      		<h4 class="all_students_title">All Students</h4>
 			      	</div>
-			      	<div class="col-md-8 col-sm-8">
-				  	  <div class="col-md-4 col-sm-4">
+			      	<div class="col-md-8 col-sm-8 col-xs-8">
+				  	  <div class="col-md-4 col-sm-4 col-xs-4">
 			  	        <input class="search_input" placeholder="search" type="text" ng-model="search">
 			  	      </div>
-			  	      <div class="col-md-3 col-sm-3">
-			  	        <select>
+			  	      <div class="col-md-3 col-sm-3 col-xs-3">
+			  	        <select class="selectpicker show-menu-arrow">
 			  	          <option selected disabled hidden>Level</option>
 			  	          <option>Freshman</option>
 			  	      	  <option>Sophomore</option>
@@ -82,7 +124,7 @@
 			  	      	  <option>Senior</option>
 			  	      	</select>
 			  	      </div>
-			  	      <div class="col-md-3 col-sm-3">
+			  	      <div class="col-md-3 col-sm-3 col-xs-3">
 			  	        <select style="width: 100%;">
 			  	          <option selected disabled hidden>Course</option>
 			  	          <option>Database</option>
@@ -90,7 +132,7 @@
 			  	      	  <option>Unix programming</option>
 			  	      	</select>
 			  	   	  </div>
-			  	      <div class="col-md-2 col-sm-2">
+			  	      <div class="col-md-2 col-sm-2 col-xs-2">
 			  	        <select>
 			  	          <option selected disabled hidden>Group</option>
 			  	          <option>16-4</option>
@@ -102,7 +144,7 @@
 		  	        </div>
 			  	  </tr>
 			  	  <tr class="header-row">
-			  	  	<td><label><input type="checkbox" ng-model="selectall" /></label></td>
+			  	  	<td><label><input type="checkbox" class="checkbox-circle" ng-model="selectall" /></label></td>
 			  	    <td class="table_des_row"> № </td>
 			  	    <td class="table_des_row" ng-click="orderByMe('id')">
 			  	  	 	Student ID <i class="fas fa-sort"></i>
@@ -145,6 +187,23 @@
 	  </div>
 	</div>
   </div>
+  <script type="text/javascript">
+	var clicked = false;
+    $('#student_href').click(function(){
+        if(!clicked){
+			$(".dropdown-fa").addClass("rotate");
+			clicked = true;
+     	}
+	    else if(clicked){
+			$(".dropdown-fa").removeClass("rotate");
+			clicked = false;
+	    }
+    });
+    $( "a" ).click(function() {
+	  var text = $( this ).text();
+	  $( ".navValue" ).val( text );
+	});
+  </script>
   <script type="text/javascript" src="data/js/index.js"></script>
 </body>
 </html>

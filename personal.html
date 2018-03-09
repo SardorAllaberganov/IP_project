@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Personal Information</title>
+  <link rel="shortcut icon" href="data/img/st_info.png">
+  <link rel="stylesheet" type="text/css" href="data/css/bootstrap.min.css">
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="data/css/stylesheet.css">
+  <link rel="stylesheet" href="data/css/jquery-ui.css" />
+  <!-- scripts -->
+  <script type="text/javascript" src="data/js/jquery.min.js"></script>
+  <script type="text/javascript" src="data/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="data/js/jQueryUI.js"></script>
+  <script type="text/javascript">
+	$(function() {
+	  $("#datepicker").datepicker({
+	    changeMonth: true,
+	    changeYear: true,
+	    yearRange: '1950:2018',
+	  });
+	  $('#clear-dates').on('click', function () {
+	    $("#datepicker").datepicker('setDate', null);
+	  });
+	});
+  </script>
+</head>
+<body>
+  <div class="container-fluid">
+  	<div class="row">
+  	  <div class="personal_info_main">
+  	    <div class="personal_info_main_inner">
+  	      <div class="col-md-5">
+  	      	<div class="personal_image_block">
+  	      	  <div><img class="user_img" src="data/img/user.png" alt="User photo"></div>
+  	      	  <span>
+  	      	  	<label>Choose user image...<input type="file" class="set_user_img" name="user_img"></label>
+  	  	  	  	<button type="submit">Submit</button>
+  	      	  </span>
+  	      	</div>
+  	      </div>
+  	      <div class="col-md-6 col-md-offset-right-1">
+			<div class="personal_input_block">
+			  <h2>Personal Information</h2>
+			  <div class="personal_form_block">
+			  	<form action="" method="post">
+			  	  <table>
+	  			  	<tr>
+	  			  		<td class="personal_form_description">First Name: </td>
+	  			  		<td class="personal_form_input"><input type="text" name="first_name"></td>
+	  			  	</tr>
+	  			  	<tr>
+	  			  		<td class="personal_form_description">Second Name: </td>
+	  			  		<td class="personal_form_input"><input type="text" name="second_name"></td>
+	  			  	</tr>
+	  			  	<tr>
+	  			  		<td class="personal_form_description">Middle Name: </td>
+	  			  		<td class="personal_form_input"><input type="text" name="middle_name"></td>
+	  			  	</tr>
+	  			  	<tr>
+	  			  		<td class="personal_form_description">Gender: </td>
+	  			  		<td class="personal_form_input">
+	  			  		  <div class="gender_block">
+	  			  			<label><input type="radio" name="gender" class="gender" checked /> Male</label>
+	  			  			<label class="gender_female_label"><input type="radio" name="gender" class="gender"/> Female</label>	
+	  			  		  </div>
+	  			  		</td>
+	  			  	</tr>
+	  			  	<tr>
+	  			  		<td class="personal_form_description">Phone Number: </td>
+	  			  		<td class="personal_form_input"><input type="number" name="phone"></td>
+	  			  	</tr>
+	  			  	<tr>
+	  			  		<td class="personal_form_description">Date of birth:</td>
+	  			  		<td class="personal_form_input">
+	  					  <input type="text" id="datepicker" readonly="readonly" name="date" min="1990-12-31" max="2018-12-31">
+	  					  <input type="button" value="x" id="clear-dates">
+	  			  		</td>
+	  			  	</tr>
+	  			  	<tr>
+	  			  		<td class="personal_form_description">Address: </td>
+	  			  		<td class="personal_form_input">
+	  			  		  <textarea class="address" name="address" cols="30" rows="4"></textarea>
+	  			  		</td>
+	  			  	</tr>
+	  			  </table>
+			  	</form>
+			  	<button type="submit">Add</button>
+			  </div>
+			</div>
+  	      </div>
+  	    </div>
+  	  </div>
+  	</div>
+  </div>
+</body>
+</html>

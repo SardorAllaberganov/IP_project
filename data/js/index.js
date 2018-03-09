@@ -1,11 +1,22 @@
 var myApp = angular.module('studentInfo', ['ngAnimate']);
+  myApp.controller('adminController', ['$scope', function ($scope) {
+    $scope.admin_list = [
+        {id:"u1610202", name: 'sardor allabergenov', email: 'hello@mail.com'}
+      ];
+    }]
+  );
+  myApp.controller('teacherController', ['$scope', function ($scope) {
+      $scope.teacher_list = [
+        {id:"u151041", name: 'Irfan ud-Din', email: 'hello@mail.com'}
+      ];
+    }]
+  );
   myApp.controller('stInfoController', ['$scope', function ($scope) {
-
    	$scope.list = [     
    		{id: "1610202", name:'sardor allabergenov', email:'hello@mail.com', gpa:'2.96'},
       {id: "1610231", name:'shohsanam shirinkulova', email:'hello@mail.com', gpa:'4.28'},
       {id: "1610183", name:'rahmatjon khasanov', email:'hello@mail.com', gpa:'4.31'},
-      {id: "1610127", name:'madina kurbanov', email:'hello@mail.com', gpa:'3.68'},
+      {id: "1610127", name:'madina kurbanova', email:'hello@mail.com', gpa:'3.68'},
       {id: "1610203", name:'sardor doniyorov', email:'hello@mail.com', gpa:'4.01'},];
 
     $scope.add = function (){
@@ -38,7 +49,7 @@ var myApp = angular.module('studentInfo', ['ngAnimate']);
   }
   }]
 );
-  myApp.filter('myFormat', function() {
+  myApp.filter('upperCase_name', function() {
     return function(x) {
       var i, c, txt = " ";
       for (i = 0; i < x.length; i++) {
@@ -84,7 +95,9 @@ $(document).ready(function() {
         e.preventDefault();
         $(".sidenav a.active").removeClass("active"); //Remove any "active" class  
         $(this).addClass("active");
-        $(activeTab).show(); //Fade in the active content  
+        
     });
 });
 /* ======= end active menu script ======= */
+
+
