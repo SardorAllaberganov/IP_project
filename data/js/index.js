@@ -13,18 +13,18 @@ var myApp = angular.module('studentInfo', ['ngAnimate']);
   );
   myApp.controller('stInfoController', ['$scope', function ($scope) {
    	$scope.list = [     
-   		{id: "1610202", name:'sardor allabergenov', email:'hello@mail.com', gpa:'2.96'},
-      {id: "1610231", name:'shohsanam shirinkulova', email:'hello@mail.com', gpa:'4.28'},
-      {id: "1610183", name:'rahmatjon khasanov', email:'hello@mail.com', gpa:'4.31'},
-      {id: "1610127", name:'madina kurbanova', email:'hello@mail.com', gpa:'3.68'},
-      {id: "1610203", name:'sardor doniyorov', email:'hello@mail.com', gpa:'4.01'},];
+   		{id: "U1610202", name:'sardor allabergenov', email:'hello@mail.com', gpa:'2.96'},
+      {id: "U1610231", name:'shohsanam shirinkulova', email:'hello@mail.com', gpa:'4.28'},
+      {id: "U1610183", name:'rahmatjon khasanov', email:'hello@mail.com', gpa:'4.31'},
+      {id: "U1610127", name:'madina kurbanova', email:'hello@mail.com', gpa:'3.68'},
+      {id: "U1610203", name:'sardor doniyorov', email:'hello@mail.com', gpa:'4.01'},];
 
     $scope.add = function (){
 
       angular.forEach($scope.list, function(attr){
         if($scope.id !== attr.id){
           if(angular.isDefined($scope.firstname) && $scope.id != '' && $scope.firstname != '' && $scope.surname != '' ){
-            $scope.list.push({ id: $scope.id, name: $scope.firstname +' '+ $scope.surname, email: $scope.email});
+            $scope.list.push({ id: 'U' + $scope.id, name: $scope.firstname +' '+ $scope.surname, email: $scope.email});
             $scope.id = '';
             $scope.firstname = '';
             $scope.surname = '';
@@ -65,12 +65,6 @@ var myApp = angular.module('studentInfo', ['ngAnimate']);
         return txt;
       };
     });
-
-$(document).ready(function(){
-    $("#datepicker").focus(function(){
-        $(this).datepicker();
-    });
-});
 
 // Get the modal
 var modal = document.getElementById('ask-modal');
